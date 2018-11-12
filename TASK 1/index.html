@@ -3,25 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>TASK 1</title>
-    <style>
-        body{
-        font-family: "Helvetica Neue";
-        font-weight: 300;
-    }
-    input{
-        display: block;
-    }
-    form{
-        background-color: #329BFB;
-        padding: 30px;
-        width: 300px;
-        border: 5px solid #0076FB;
-        color: white;
-    }
-    p{
-        margin-bottom: 5px;
-    }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<form onsubmit="return false">
@@ -34,28 +16,6 @@
         <button type="submit" onclick="formSubmit()">Get Result</button>
 	</form>
 
-    <script>
-        function formSubmit() {
-            var input = document.getElementById("input");
-            var output = document.getElementById("output");
-            output.value = CharRemover(input.value);
-
-
-            function CharRemover(str) {
-                var Reoccur = '';
-                str.split(" ").forEach(function (t) {
-                    var reoccur = '';
-                    for (var i = 0; i < t.length; i++) {
-                        if (t.lastIndexOf(t[i]) !== t.indexOf(t[i])) {
-                            while(str.indexOf(t[i]) !== -1)
-                                str = str.replace(t[i],"")
-                        }
-                    }
-                });
-                return str;
-            }
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
