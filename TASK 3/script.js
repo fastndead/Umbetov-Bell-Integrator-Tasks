@@ -21,6 +21,8 @@ function oneItemTransfer(fromSelect, toSelect) {
     catch {
         alert("Select something.");
     }
+    fromSelect.blur()
+    toSelect.blur()
 }
 function allItemsTransfer(fromSelect, toSelect) {
     var leftSelect = document.getElementById("left-select");
@@ -29,4 +31,6 @@ function allItemsTransfer(fromSelect, toSelect) {
     {
         toSelect.appendChild(fromSelect[0]);
     }
+    fromSelect.blur()
+    toSelect.blur()
 }
