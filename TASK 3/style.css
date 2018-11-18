@@ -1,7 +1,33 @@
-.form{
-    background-color: #c8f8b9;
-    padding: 30px;
-    width: 400px;
-    font-family: "Helvetica Neue";
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+.left-side, .right-side{
+    display: inline-block;
+    padding: 50px;
+    margin: auto;
+    height: 300px;
+    vertical-align: top;
+    width: 100px;
+    border: solid 1px black;
+    margin: 10px;
+}
+.button-bar{
+    display: inline-block;
+    margin-top: 150px;
+}
+.select{
+    width: 100px;
+    border: solid 0 black!important;
+}
+
+label{
+    display: block;
+}
+
+.item{
+    padding:30px;
+    margin-bottom: 10px;
+    border: solid 1px black;
+}
+button{
+    display: list-item;
+    margin: auto;
+    margin-bottom: 10px;
 }
