@@ -17,6 +17,7 @@ function oneItemTransfer(fromSelect, toSelect) {
     var selectedItem = fromSelect[fromSelect.selectedIndex];
     try{
         toSelect.appendChild(selectedItem);
+        toSelect[toSelect.selectedIndex].selected = false;
     }
     catch {
         alert("Select something.");

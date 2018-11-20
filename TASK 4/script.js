@@ -1,18 +1,37 @@
 var timer;
 var interval;
-var going = false;
+var isGoing = false;
+var isPaused = true;
+var setIntervalInvoked = false;
+var remainigTime = 10;
+function Timer(callback, delay) {
+    var timerId, start, remaining = delay;
+
+    this.pause = function() {
+        window.clearTimeout(timerId);
+        remaining -= new Date() - start;
+    };
+
+    this.resume = function() {
+        start = new Date();
+        window.clearTimeout(timerId);
+        timerId = window.setTimeout(callback, remaining);
+    };
+
+    this.resume();
+}
 
 window.onload = function () {
    init();
 };
 
 function init() {
-    if(going === true)
+    if(isGoing === true)
     {
-        alert("process is going already");
+        alert("process is isGoing already");
         return;
     }
-    going = true;
+    isGoing = true;
     var page = window.location.pathname.split("/").pop();
     switch (page){
         case "index.html":
@@ -61,26 +80,33 @@ function instantSwitchBackwards() {
 }
 
 function pageSwitcher(page) {
-    var time = 10;
     var header = document.getElementById("remaining-time");
-    timer = setTimeout(function () {
+    timer = new Timer(function () {
         window.location.replace(page);
     }, 10000);
-    header.innerHTML = "Time remaining " + time;
-    interval = setInterval(function () {
-        time--;
-        header.innerHTML = "Time remaining " + time;
-        if(time <= 0){
-            clearInterval(interval);
-        }
-    },1000);
+
+    header.innerHTML = "Time remaining " + remainigTime;
+    isPaused = false;
+    if(!setIntervalInvoked)
+    {
+        setIntervalInvoked = true;
+        interval = setInterval(function () {
+            if(isPaused !== true)
+            {
+                remainigTime--;
+                header.innerHTML = "Time remaining " + remainigTime;
+                if(remainigTime <= 0){
+                    clearInterval(interval);
+                }
+            }
+        },1000);
+    }
 }
 
 function stopSwitcher() {
-    going = false;
-    document.getElementById("remaining-time").innerHTML = "Time remaining";
-    clearInterval(interval);
-    clearTimeout(timer);
+    isPaused = true;
+    isGoing = false;
+    timer.pause();
 }
 
 function closeWindow() {
